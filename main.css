@@ -58,6 +58,7 @@ section h3 img{ width:2rem;}
 .bottomarea p,
 .bottomarea blockquote{ padding:0 1rem .5rem; margin:0 auto; max-width:760px; font-size:.75rem;}
 .bottomarea blockquote{ font-style:italic;}
+.bottomarea p{ text-align:center;}
 .bottomarea a{ color:#ccc}
 .bottomarea a:hover{ color:#fff}
 
