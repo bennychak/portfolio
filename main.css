@@ -1,0 +1,89 @@
+body{ background-color:#666}
+
+.tobottom{ float:right; display:block; padding:.3rem 1rem .3rem ; color:#000; font-size:1.5rem;}
+a.tobottom,
+a.tobottom:hover,
+a.tobottom:active{ color:#000;}
+.toparea{ min-height:4.5rem; padding:2.5rem 0 0; color:#111; background-color:#fff; text-transform:uppercase; z-index:1000; left:0; top:0; width:100%;}
+.toparea h1{ float:left; font-size:1.5rem; margin:0 auto; padding:0 1rem; max-width:760px; font-family:}
+.toparea h1 img{ margin-right:.5rem; width:2rem;}
+.nav{ padding:2rem 0}
+.toparea .nav{ display:none}
+.navlist{ max-width:760px; padding:0 1rem; margin:0 auto}
+.navlist .item{ padding:.5rem 1rem;}
+.navlist .item .lk{ display:inline-block;}
+.navlist .selected .lk{ color:#000; cursor:default;}
+.navlist .item br{ display:none}
+
+.checked .toparea{ position:fixed; min-height:2rem; background-color:rgba(255,255,255,.9); padding:.5rem 0; box-shadow:rgba(0,0,0,.3) 0 0 3px; color:#666;
+	animation:toparea .3s ease-in-out 1;
+	animation-fill-mode:both;
+}
+@keyframes toparea{
+	0%{ transform:translateY(-100%)}
+	100%{transform:translateY(0)}
+}
+
+.checked .toparea h1{ padding:.5rem 1rem; float:left; font-size:1rem;}
+.checked .toparea h1 img{ width:1.4rem;}
+.checked .toparea .nav{ padding:0; float:right;}
+
+article{ background-color:#fff;}
+
+.checked section:first-child{ padding-top:7rem;}
+section h2{ background-color:#f0f0f0;}
+section h2 .inner{ position:relative; margin:0 auto; max-width:760px; padding:.5rem 1rem; font-size:1rem;}
+section h2 img{ float:left; margin:0 auto; width:2rem;}
+section h2 p{ overflow:hidden; position:relative; font-size:.875rem;}
+
+section h3{ max-width:760px; padding:0 1rem; margin:2rem auto 0; font-size:1rem; text-align:center;}
+section h3 img{ width:2rem;}
+
+.itemlist{ margin:0rem auto 0; max-width:760px; padding:0 0 1rem 1rem;}
+.itemlist .item{ padding:1rem 1rem 0 0;}
+.itemlist .item .pic,
+.itemlist .item .desc{ background-color:#fff;}
+.itemlist .item .pic{ padding:.2rem; box-shadow:rgba(0,0,0,.2) 0 0 3px}
+.itemlist .item img{ width:100%; display:block; opacity:.95}
+.itemlist .item .lk:hover img{ opacity:1}
+.itemlist .item .desc{ color:#878787; font-size:.875rem; text-align:center; margin-top:.5rem; padding:.5rem 0}
+.navlist .item .supp{ margin-left:.5rem;}
+
+.bottomarea{ padding:1rem 0 3rem; color:#ccc; background-color:#666}
+.bottomarea p,
+.bottomarea blockquote{ padding:0 1rem .5rem; margin:0 auto; max-width:760px; font-size:.75rem;}
+.bottomarea blockquote{ font-style:italic;}
+.bottomarea a{ color:#ccc}
+.bottomarea a:hover{ color:#fff}
+
+.morelink,
+.btn1{ background:#fa8919; color:#fff; font-size:1rem; text-transform:uppercase; padding:.56em; border-radius:4px; text-align:center;}
+.morelink{ display:block; margin:1rem 1rem 0;}
+
+@media screen and (min-width:768px){
+	.tobottom{ display:none;}
+	.toparea h1{ font-size:2rem; float:none;}
+	.toparea h1 img{ width:2.7rem;}
+	.checked section:first-child{ padding-top:13.5rem;}
+	section h3{ font-size:1.25rem;}
+	section h3 img{ width:2rem;}
+	.navlist .item{ float:left; border-left:#dadada 1px solid;}
+	.bottomarea .navlist .item{ border-left-color:#878787}
+	.navlist .item br{ display:block;}
+	.navlist .item .supp{ margin-left:0;}
+	.toparea .nav{ display:block;}
+	.checked .navlist .item br,
+	.checked .navlist .item .supp{ display:none}
+
+	.itemlist .item{ float:left; box-sizing:border-box}
+	.e_itemlist_1 .item{ width:100%}
+	.e_itemlist_2 .item{ width:50%}
+	.e_itemlist_3 .item{ width:33%}
+	.e_itemlist_4 .item{ width:25%}
+	.e_itemlist_5 .item{ width:20%}
+	.morelink{ width:15rem; margin:1rem auto 0}
+}
+@media print{
+	.toparea{ position:static!important; box-shadow:none!important}
+	section{ margin-top:2rem!important}
+}
