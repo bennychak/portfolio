@@ -52,7 +52,7 @@ section h3 img{ width:2rem;}
 .navlist .item .supp{ margin-left:.5rem;}
 
 .maindetail{ margin:1rem auto 0; max-width:600px; padding:1rem; border-top:#dadada 1px solid;}
-.maindetail p{ margin-top:1rem; font-size:.875rem}
+.maindetail p{ margin-top:1rem; font-size:.875rem; text-align:justify;}
 
 .bottomarea{ padding:1rem 0 3rem; color:#ccc; background-color:#666}
 .bottomarea p,
