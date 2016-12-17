@@ -21,3 +21,10 @@ if(hasVideo){
 }else{
 	alert('请使用支持HTML5的浏览器，如Chrome、Safari访问以查看视频')
 }
+
+$(function(){
+    $("img.lazy").lazyload({
+	    effect : "fadeIn",
+	    threshold : 500
+    });
+});

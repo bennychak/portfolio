@@ -9,14 +9,14 @@ address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:nor
 ol,ul{list-style:none}
 caption,th{text-align:left}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
-body{ font:16px/1.5 Calibri,pingfang SC,sans-serif; -webkit-user-select:none;}
-input,textarea,select,button{ outline: none; resize:none; font:16px/1.5 Calibri,PingFang SC,sans-serif;}
+body{ font:16px/1.5 Helvetica,Arial,pingfang SC,sans-serif; -webkit-user-select:none;}
+input,textarea,select,button{ outline: none; resize:none; font:16px/1.5 Helvetica,Arial,PingFang SC,sans-serif;}
 select{font-size:12px}
 button{line-height:1.231;white-space:nowrap;vertical-align:middle;cursor:pointer}
 strong{font-weight:800}
 a{ text-decoration: none; outline: none; cursor: pointer;}
 a:link,label,body{ -webkit-tap-highlight-color:transparent; -webkit-focus-ring-color:transparent;}
-a:hover{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
 
 .c_t3{ color:#b58e5b}
 .c_t9{ color:#999}
@@ -110,9 +110,11 @@ a:hover{ text-decoration:none;}
 .tx_nbr{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 
 .clearfix:after,
-section h2:after{ content:''; clear:both; visibility:hidden; display:block;}
+section h2:after,
+.itemlist .item:after{ content:''; clear:both; visibility:hidden; display:block;}
 .clearfix,
-section h2{ *zoom:1}
+section h2,
+.itemlist .item{ *zoom:1}
 
 hr{ border:none; border-top:#ddd 1px solid; background:none;margin:30px 0 15px;height:0; overflow:hidden;}
 
@@ -120,11 +122,11 @@ hr{ border:none; border-top:#ddd 1px solid; background:none;margin:30px 0 15px;h
 ----------------------------------------------------------------*/
 
 /* 40%灰色：次要信息 */
-.c_t0,body{ color:#666}
+.c_t0,body{ color:#333}
 /* 20%灰色:title bar标题文字，正文标题／结构化摘要，常规按钮文字 */
 .c_t1{ color:#333}
 /* 标准橘色：主导航／二级导航当前态，价格，强提醒 */
-.c_t2{ color:#fa8919}
+.c_t2{ color:#115740}
 /* 68%灰色：文本框内的引导文案，功能列表中的弱引导文字 */
 .c_t3{ color:#adadad;}
 /* 80%灰色：按钮不可点击态文字 */
@@ -142,8 +144,8 @@ hr{ border:none; border-top:#ddd 1px solid; background:none;margin:30px 0 15px;h
 ----------------------------------------------------------------*/
 
 /* 默认链接色 */
-.c_a0,a{ color:#fa8919;}
-.c_a0:active,a:active{ color:#fa8919}
+.c_a0,a{ color:#115740;}
+.c_a0:active,a:active{ color:#115740}
 
 /* 默认链接色 */
 .c_a1{ color:#366;}

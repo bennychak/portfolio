@@ -1,0 +1,1971 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Voice &amp; Tone</title>
+  <style type="text/css">
+    /* Color Palette Based on Monokai
+
+white       : #fafafa
+light grey  : #efefef
+grey        : #75715e
+dark grey   : #272822
+black       : #191919
+
+light blue  : #66d9ef
+blue        : #1db4d0
+lavender    : #bf79db
+magenta     : #f92672
+light green : #a6e22e
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Hind:400,500,600,700,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+/* Theme Styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 100%;
+  color: #191919;
+  background-color: #000;
+}
+
+/* Custom Slide Styles */
+#slide-1 {
+  color: #fafafa;
+  background: #222;
+  background-size: cover;
+}
+#slide-1::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: " ";
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: url('background-image.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+#slide-1 h1 {
+  text-shadow: 1px 2px 4px #191919;
+}
+
+#slide-1 p {
+  text-shadow: 1px 1px 1px #191919;
+}
+
+.center {
+  text-align: center;
+}
+
+img.badge {
+  height: 128px;
+  width: 128px !important;
+  border-radius: 50% !important;
+}
+
+
+/* The following is needed for the ESC overview slide selection */
+.slides {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.slides.active .slide:not(.hidden) {
+  border: 22px solid red;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  cursor: pointer;
+  display: none;
+}
+
+.slides.active .slide:hover .slide-overlay::before {
+  content: '▶';
+  text-align: center;
+  line-height: 300px;
+  font-size: 200px;
+  color: #fff;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.slides.active .slide:hover .slide-overlay{
+  display: block;
+  background: rgba(0,0,0,0.5);
+}
+.slide-wrapper {
+  margin: 7px;
+  transition: all 250ms;
+}
+
+/* Presentation Styles */
+.slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 100px;
+  z-index: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #FFF;
+}
+
+.slide::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: " ";
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background: url('clean-white-polygon-backgrounds-7.jpg') center center no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  max-width: 800px;
+  max-height: 600px;
+  margin: 80px auto 0 auto;
+  padding: 0;
+  font-size: 200%;
+  font-weight: 200;
+  line-height: 1.375;
+  overflow: hidden;
+}
+
+.slide-content img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.overview {
+  display: inline-block;
+  float: left;
+  color: #C7C7C7;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.overview:hover {
+  color: #1DB4D0;
+}
+.arrow {
+  float: left;
+  height: 0;
+  width: 0;
+  margin-right: 15px;
+  border: 15px solid #C7C7C7;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-right-width: 25px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-left-width: 0;
+}
+
+.next {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-right-width: 0;
+  border-bottom-color: transparent;
+  border-left-width: 25px;
+}
+
+.prev:hover {
+  border-right-color: #1DB4D0;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #1DB4D0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Hind', sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  margin: 170px 0 0;
+  font-size: 300%;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 5px 0;
+  font-size: 100%;
+  font-weight: 200;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px ridge #191919;
+}
+
+ul {
+  font-weight: 200;
+  line-height: 1.375;
+  padding: 20px 0 0 60px;
+}
+
+blockquote {
+  padding-left: 20px;
+  margin-left: 0;
+  background: #efefef;
+  border-left: 5px solid #272822;
+  border-radius: 0 3px 3px 0;
+}
+
+blockquote p {
+  padding: .5em;
+  color: #272822;
+}
+
+.left {
+  float: left;
+  width: 48%;
+}
+
+.right {
+  float: right;
+  width: 48%;
+}
+
+.author h1 {
+  margin-bottom: 30px;
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+}
+
+.author h3 {
+  font-size: 95%;
+  font-weight: 100;
+  text-align: center;
+  border: none;
+}
+
+.author h3.twitter::before {
+  content: 'Twitter: ';
+}
+
+.author h3.github::before {
+  content: 'Github: ';
+}
+
+.author h3.email::before {
+  content: 'Email: ';
+}
+
+.author h3.url::before {
+  content: 'Web: ';
+}
+
+a {
+  text-decoration: none;
+  color: #1db4d0;
+}
+
+a:hover {
+  color: #1db4d0;
+  border-bottom: 1px solid #1db4d0;
+}
+
+hr {
+  border: 1px solid #272822;
+}
+
+pre {
+  font-size: 75%;
+  line-height: 1.3;
+}
+
+table td,
+table th {
+  padding-right: 3em;
+  text-align: left;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  z-index: 2;
+}
+
+.progress-bar {
+  height: 3px;
+  width: 0;
+  background-color: #1DB4D0;
+  -webkit-transition: width .15s ease-out;
+     -moz-transition: width .15s ease-out;
+       -o-transition: width .15s ease-out;
+          transition: width .15s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Code Highlighting */
+code {
+  padding: .1em .35em;
+  font-family: 'Inconsolata';
+  background-color: #fafafa;
+  border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  padding: .5em;
+  font-family: 'Inconsolata';
+  font-weight: 400;
+  overflow-y: hidden;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+code.lang-bash-blank{
+  background: #000;
+  color: #fff!important;
+}
+code.lang-bash-blank-small{
+  background: #000;
+  color: #fff!important;
+  font-size: 0.45em;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 6px;
+  box-shadow: inset 0 -4px 0 #bbb;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  body {
+    font-size: 70%;
+  }
+
+  .slide {
+    padding: 50px;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev,
+  .prev:hover {
+    border-right-color: rgba(135, 135, 135, .5);
+  }
+
+  .next,
+  .next:hover {
+    border-left-color: rgba(135, 135, 135, .5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow: hidden;
+    font-size: 50%;
+  }
+
+  .slide {
+    padding: 10px;
+  }
+  .slide-content {
+    height: 340px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+  }
+
+  body {
+    float: none !important;
+    padding: 0;
+    margin: 0 auto !important;
+    overflow: visible;
+    font-size: 52%;
+    background: none !important;
+    border: 0;
+  }
+
+  .progress,
+  .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+    border: 1px solid #222;
+
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+.slide-wrapper:nth-child(4n+2) .slide{}
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div class="slides">
+    <div class="slide-wrapper">
+      <div class="slide" id="slide-1">
+        <div data-id="1" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">情感化内容策略</h1>
+<h2 id="-">面向未来的友好设计</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-2">
+        <div data-id="2" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="uber-copy-style-tone">Uber - Copy Style Tone</h3>
+<p><img src="./voiceandtone/uber.png" alt="Alt text"></p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-3">
+        <div data-id="3" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">优步 - 文案识别和情感化指南</h3>
+<blockquote>
+<p>我们的品牌的重要性不仅在于视觉，也在于向读者呈现的文案。<br>我们通过下面5个最佳范例，帮助你保持语言风格的一致性，以及提升文案的品牌识别性。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-4">
+        <div data-id="4" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="1-">1. 直接、清晰、简约</h3>
+<blockquote>
+<p>避免华丽、迂回、有歧义的语言。<br>我们的品牌和用户之间的交流应该直接、清晰，利用简短的文字传递核心内容。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-5">
+        <div data-id="5" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="2-">2. 消除用户负担</h3>
+<blockquote>
+<p>无论线上还是线下，无论我们是和司机、乘客还是商业伙伴进行交流，我们应该秉持一种能够提供帮助和鼓励的姿态。<br>在用户引导等需要教育用户的地方，我们的文案应该是容易被理解，且呈现友好包容的态度的。<br>我们提倡一种不那么刻意，并随时透露出来的小自信，以及积极向上的沟通语气。<br>提供给用户他们所需要足够的信息，避免啰嗦和车轱辘话。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-6">
+        <div data-id="6" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="3-">3. 了解用户感兴趣的地方</h3>
+<blockquote>
+<p>我们的文案应该成为一种连接器，连接我们要传递的价值观和用户真正在意的点（利益获得和价值提升）。<br>用心体会车主和乘客的思维方式和具体感受——他们可以接受什么，他们想干什么，他们想了解什么——然后我们的文案要提供他们最感兴趣的，以及和他们的利益息息相关的内容。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-7">
+        <div data-id="7" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="4-">4. 口语化</h3>
+<blockquote>
+<p>文案应该像是人说出来的，这样的文案会更有吸引力、更可靠、更有效。这是针对死板的书面语、机器语言和官方语言而言的。<br>个性化人格化的语言方式，可以让我们的品牌和用户之间建立起一种情感化的链接，有助于提升用户的忠诚度。<br>所以，无论我们要表达什么，请采取更自然的方式，并采取一种对话和交流的态度，像一个真实的人说话那样。避免向用户传递商业和技术术语。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-8">
+        <div data-id="8" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="5-">5. 表达方式和用户印象</h3>
+<blockquote>
+<p>我们希望我们说出的每句话都是聪明的和明确的，在我们要表达兴奋和愉快的态度的时候也要注意不要太过愚蠢。<br>我们可以使用风趣的语言去提升我们文案的幽默感，但请注意一个度，避免一些幽默中可能出现攻击和歧视，或者让人觉得这就是个冷笑话。幽默中包含智慧，文案就会大放光彩。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-9">
+        <div data-id="9" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">内容策略的发展</h1>
+<p><img src="./voiceandtone/2.png" style="width:200px; display:block; margin:20px auto 0" /></p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-10">
+        <div data-id="10" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">面向未来的友好设计</h3>
+<ul>
+<li><strong>内容策略, by Jeremy Keith</strong></li>
+<li>移动优先, by Luke Wroblewski</li>
+<li>内容围绕用户, by Cameron Koczon</li>
+</ul>
+<blockquote>
+<p>“设计是为内容服务的，所以内容比设计更重要。脱离内容的设计就不是设计了，只能称为装饰。”<br>——Jeffrey Zeldman</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-11">
+        <div data-id="11" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="mailchimp-">MailChimp，邮件猩猩的用户研究</h3>
+<p><img src="./voiceandtone/figure2-2.jpg" alt="Alt text"></p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-12">
+        <div data-id="12" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">优化你的文案，实现和用户更好地对话</h3>
+<p>MailChimp 是一家做电子邮件营销平台的公司。他们的文案设计非常棒。该公司的内容总监 Kate Kiefer Lee 建立了一个叫做“Voice and Tone”的网站，<strong>罗列了在各种不同的情况下，文案设计师应该如何使用文字来和用户沟通</strong>。</p>
+<blockquote>
+<p>设计过程应该从文案设计开始，而且文案设计应该更早地介入产品环节，甚至从产品立项起就应该有文案设计师参与进来。<br>——Stephanie Hay</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-13">
+        <div data-id="13" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">设计方法</h1>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-14">
+        <div data-id="14" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">结合场景，辨识用户</h3>
+<p>新用户、老用户、专业用户、小白用户……</p>
+<ul>
+<li>对新用户友好的界面（营销）</li>
+<li>对老用户友好的界面（订阅）</li>
+<li>对新老用户一视同仁的界面（法规）</li>
+<li>……</li>
+</ul>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-15">
+        <div data-id="15" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">分析心理，设计对话</h3>
+<ul>
+<li>先不要去考虑页面的结构和布局，思考一下我们通过文案和用户产生对话的前因后果：<ul>
+<li><strong>假设对话可能</strong>：在这个界面中，我们最可能和用户产生什么样的对话？</li>
+<li><strong>应对用户疑问</strong>：我们能否预料到用户此时想了解什么？能否快速解决他们的疑问？</li>
+<li><strong>保证沟通有效</strong>：这次对话会导致什么结果——引导用户进行注册？帮助用户了解功能？</li>
+</ul>
+</li>
+<li>建立一个真实的和用户对话的场景。</li>
+</ul>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-16">
+        <div data-id="16" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-voice-tone">附：Voice &amp; Tone</h1>
+<h2 id="-mailchimp-http-www-voiceandtone-com-"><a href="http://www.voiceandtone.com/">[MAILCHIMP公司的情感化文案指南]</a></h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-17">
+        <div data-id="17" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">成功信息</h1>
+<h2 id="-">（用户完成计划任务）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-18">
+        <div data-id="18" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>这周的活干完啦！终于可以过周末啦！</p>
+</blockquote>
+<p>关键词：解脱、骄傲、高兴、对某事有预期</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-19">
+        <div data-id="19" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>表扬用户，干得不错</li>
+<li>用户会感觉快乐和轻松，文案可以使用较为轻松的口气去迎合这种气氛</li>
+<li>文案幽默些也是可以哒</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-20">
+        <div data-id="20" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>干得漂亮！你可以放松一下了。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-21">
+        <div data-id="21" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="app-">APP上的文案</h1>
+<h2 id="-">（用户查看数据跟踪和统计页面）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-22">
+        <div data-id="22" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我们邮件广告的收效好像还不错！</p>
+</blockquote>
+<p>关键词：兴奋、信任感</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-23">
+        <div data-id="23" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>语言上简单明了，让用户迅速了解其需要的数据</li>
+<li>对用户达成了目标表示鼓励和支持</li>
+<li>APP是公司的核心，而跟踪邮件投放效果是用户的核心需求。我们应该在这一步体现公司文案设计的个性和识别性</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-24">
+        <div data-id="24" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>你的邮件开启率是业界平均水平的176%，干得漂亮！</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-25">
+        <div data-id="25" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">公司新闻</h1>
+<h2 id="-">（向用户推送公司运营的订阅消息）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-26">
+        <div data-id="26" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我喜欢阅读MailChimp官方推送的消息，我总是期待着聆听他们分享自身的故事。</p>
+</blockquote>
+<p>关键词：钦佩、好奇、信任、感兴趣、惊喜</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-27">
+        <div data-id="27" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>最忠实的用户才会喜欢看我们的官方推送新闻，对待他们要像春天一样。</li>
+<li>使用轻松的语言，提供有用的信息。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-28">
+        <div data-id="28" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>独立唱片公司将过时的想法是多么奇怪啊，Asthmatic Kitty乐队要带你一起自由飞翔——他们计划通过邮件推送方式发布他们的最新动向，只有超级粉丝才能拥有这种特殊VIP待遇哦！</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-29">
+        <div data-id="29" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">博客</h1>
+<h2 id="-">（忠实用户访问公司的博客）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-30">
+        <div data-id="30" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>每次我读MailChimp的博客的时候都能发现一些新东西</p>
+</blockquote>
+<p>关键词：好奇、信任、感兴趣、期待</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-31">
+        <div data-id="31" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>这些用户是最了解MailChimp的，对他们要像春天一样，记得保持幽默感</li>
+<li>每篇博客文章都应该让读者学到一些新东西。可以提供一些扩展阅读去开启读者的眼界，让读者感受到学习新事物的愉悦。我们也可以爆料一些公司内部可公开的小道消息。</li>
+<li>我们要假定这些用户是有足够知识和技术常识储备的MailChimp资深用户。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-32">
+        <div data-id="32" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>我们刚刚收购了TinyLetter公司，要知道，TinyLetter是Philip Kaplan 去年建立并上线的，以简约设计著称的优秀的邮件服务公司，我们很开心能够走到今天。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-33">
+        <div data-id="33" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="app-2-">APP上的文案(2)</h1>
+<h2 id="-">（用户引导）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-34">
+        <div data-id="34" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>MailChimp的用户引导真是贴心，如果没有这些引导，我都不知道如何开始工作了。</p>
+</blockquote>
+<p>关键词：好奇、期待、感兴趣</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-35">
+        <div data-id="35" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>使用直接的语言告诉用户如何进行诸如创建、发送、跟踪邮件数据等基本操作。</li>
+<li>鼓励和支持用户开始使用产品。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-36">
+        <div data-id="36" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>点击跟踪邮件功能 &gt; 我们会告诉你用户点击了你邮件中的哪些链接，以及点击的频率。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-37">
+        <div data-id="37" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">官方网站上的宣传</h1>
+<h2 id="-">（吸引那些容易冲动消费的用户）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-38">
+        <div data-id="38" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我好像挺喜欢邮件营销这种形式的。我需要注册一个MailChimp账户，我需要知道他们能提供哪些功能，以及每个月我需要为此付多少钱。</p>
+</blockquote>
+<p>关键词：感兴趣、期待、乐观、好奇</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-39">
+        <div data-id="39" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>自信告诉他，MailChimp有多牛逼。</li>
+<li>告诉他MailChimp上手特别简单。</li>
+<li>通过牛逼的设计、数据和一些帮助信息去吸引他。</li>
+<li>注意体现我们企业的文化，可以有一些幽默感，但是不要过度。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-40">
+        <div data-id="40" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>有700万用户已经注册MailChimp，每天有5亿封邮件是通过MailChimp平台发送出去的。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-41">
+        <div data-id="41" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">视频教程</h1>
+<h2 id="-">（教学页面）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-42">
+        <div data-id="42" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我要看一看视频教程，学习一下如何更高效地利用MailChimp平台丰富的功能。</p>
+</blockquote>
+<p>关键词：好奇、感兴趣、乐观、信任</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-43">
+        <div data-id="43" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>用教学的态度取代推销的态度。告诉他们掌握MailChimp其实很容易。</li>
+<li>可以有一些MailChimp的个性化元素，但是不要影响用户学习的过程。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-44">
+        <div data-id="44" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>在页面刷新之后，你可以看到刚才创建创建的内容预览，下一步你需要测试邮件页面的动态部分是否运行正常。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-45">
+        <div data-id="45" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">指南</h1>
+<h2 id="-">(用户引导)</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-46">
+        <div data-id="46" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我想学习如何使用分组功能，希望这份指南能帮到我。</p>
+</blockquote>
+<p>关键词：好奇、感兴趣、乐观</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-47">
+        <div data-id="47" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>以教学的态度面对他们。告诉他们掌握MailChimp其实很容易。</li>
+<li>以朋友的角度而非推销的角度告诉他们MailChimp的功能会给他们带来哪些好处。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-48">
+        <div data-id="48" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>如果你的公司计划针对不同的用户群体发送不同类型的内容，你可以建立若干邮件推送列表。下面是具体步骤。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-49">
+        <div data-id="49" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="twitter-facebook">Twitter, Facebook</h1>
+<h2 id="-">(忠实用户才会看我们的社交网站)</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-50">
+        <div data-id="50" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>MailChimp发微博了，内容好有意思啊！</p>
+</blockquote>
+<p>关键词：信任、感兴趣、期待</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-51">
+        <div data-id="51" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>Get他们的点。</li>
+<li>轻松的语气。</li>
+<li>发布正能量的消息。</li>
+<li>注意企业形象。在重大事件发生时，不要发和推销有关的消息。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-52">
+        <div data-id="52" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>管理邮件支付不再难！MailChimp带你飞！<a href="http://eepurl.com/bdNcjv">eepurl.com/bdNcjv</a></p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-53">
+        <div data-id="53" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">基础知识</h1>
+<h2 id="-">(对那些喜欢研究的用户)</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-54">
+        <div data-id="54" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我想知道我能不能从Word中编辑内容，直接粘贴到MailChimp中。</p>
+</blockquote>
+<p>关键词：感兴趣、好奇</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-55">
+        <div data-id="55" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>直接。第一时间解决他们的问题。</li>
+<li>避免营销语言。</li>
+<li>保持文案语言风格的统一。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-56">
+        <div data-id="56" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>大多数情况下，我们并不建议使用Word编辑邮件再粘贴到MailChimp中的方法，因为很可能造成排版混乱。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-57">
+        <div data-id="57" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-2-">指南(2)</h1>
+<h2 id="-">(针对高级用户的指南条目)</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-58">
+        <div data-id="58" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我想找一些MailChimp发布的关于邮件营销的深度文章来学习。</p>
+</blockquote>
+<p>关键词：感兴趣、信任</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-59">
+        <div data-id="59" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>以教学的态度告诉他他想要的，并提供一些额外的建议。</li>
+<li>注意保持MailChimp文案的个性和识别性，将注意力聚焦在用户的问题上。</li>
+<li>不要推销我们有哪些功能，阐述这些功能是干什么的就可以。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-60">
+        <div data-id="60" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>多年前，有人收到一封病毒邮件，没注意，点开后中毒了！这种恶意手段现在存在，但是比起病毒邮件，恶意软件的威胁更大。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-61">
+        <div data-id="61" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-2-">博客(2)</h1>
+<h2 id="-">(邮件营销专家希望看到的内容)</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-62">
+        <div data-id="62" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我一直关注MailChimp的博客，他们到现在都没有发布我需要的功能。</p>
+</blockquote>
+<p>关键词：批评、感兴趣、期待</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-63">
+        <div data-id="63" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>每篇博客文章都应该让读者有所收获，可以提供扩展阅读让读者学习。</li>
+<li>我们要假定这些用户是有足够知识和技术常识储备的MailChimp资深用户。</li>
+<li>注意语言的个性化和识别性。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-64">
+        <div data-id="64" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>今天我们收到了很多关于添加新功能的建议，其中有一些已经在工程师的开发日程之中了，这些正在开发的功能不久就会向所有用户开放，你可以在这里查看我们的功能开发排期列表。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-65">
+        <div data-id="65" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">注册表单</h1>
+<h2 id="-">（注册表单中的提示文案）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-66">
+        <div data-id="66" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我打算开始使用MailChimp了.</p>
+</blockquote>
+<p>关键词：期待、决心</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-67">
+        <div data-id="67" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>使用朴素的语言和通用术语去描述表单的每个控件。</li>
+<li>提供一些信息帮助用户解决潜在疑问。</li>
+<li>鼓励用户完成注册。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-68">
+        <div data-id="68" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>填写完成这份表单之后，你就可以使用所有的功能啦。邮件，用户名，密码 &gt; 创建账户。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-69">
+        <div data-id="69" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-2-">官方网站上的宣传(2)</h1>
+<h2 id="-">（针对那些有所顾虑的用户）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-70">
+        <div data-id="70" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我正在考虑去注册一个MailChimp账户。可是我本人最讨厌垃圾邮件了，好纠结……另外，我需要知道他们是否提供从RSS源订阅邮件的功能。</p>
+</blockquote>
+<p>关键词：怀疑、感兴趣</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-71">
+        <div data-id="71" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>自信、专业。</li>
+<li>语言要体现企业文化，保持幽默，但是不要过度。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-72">
+        <div data-id="72" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>别纠结了，MailChimp的主动反垃圾邮件功能在收集了近10亿封邮件后，依然保持了一个干净的系统。如果我们发现有人意图发送恶意邮件，我们根本不会让他发送成功。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-73">
+        <div data-id="73" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">新闻稿</h1>
+<h2 id="-">（针对广泛的读者）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-74">
+        <div data-id="74" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我的收件箱中的邮件太多了，我哪有时间搭理你。</p>
+</blockquote>
+<p>关键词：崩溃、厌烦</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-75">
+        <div data-id="75" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>Get他的点——读者永远是忙碌的。</li>
+<li>新闻稿的读者未必是MailChimp的用户或粉丝，和他交流的时候可以使用正式一点的语言。</li>
+<li>避免术语，避免出错。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-76">
+        <div data-id="76" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>今天MailChimp公开了国际订阅用户的增长数据，美国之外的158个国家的用户贡献了公司45%的营收。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-77">
+        <div data-id="77" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-3-">官方网站上的宣传(3)</h1>
+<h2 id="-">（从竞品处挖掘用户加入我方阵营）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-78">
+        <div data-id="78" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我希望MailChimp比Acme Emailer强一些。</p>
+</blockquote>
+<p>关键词：怀疑、感兴趣</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-79">
+        <div data-id="79" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>自信。你要解释为什么MailChimp比其他公司的产品好。</li>
+<li>用专业的态度介绍自家产品，用户心中自有比较。</li>
+<li>语言要体现企业文化，保持幽默，但是不要过度。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-80">
+        <div data-id="80" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>MailChimp对发送邮件的最佳时间的研究显示，24小时内最佳邮件发送时间可以根据目标联系人的大数据进行计算。发送时间优化算法由MailChimp大数据发展中心的<a href="http://emailgenome.org/">邮件基因项目</a>提供支持.</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-81">
+        <div data-id="81" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">法律法规内容</h1>
+<h2 id="-">（声明）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-82">
+        <div data-id="82" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我要确信MailChimp在我发送营销邮件之前没有窃取我的内容。</p>
+</blockquote>
+<p>关键词：担心、困惑、警觉</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-83">
+        <div data-id="83" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>简单清晰地撰写和法务相关的内容，不要发散语言。</li>
+<li>提供案例的解释，不要提供抽象的摘要。提供指向政策官网的链接。</li>
+<li>严肃认真。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-84">
+        <div data-id="84" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>在MailChimp上上传的任何内容的所有权都归内容版权所有人所有。我们保留依据用户协议和法律允许下的有限公开用户内容的权利。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-85">
+        <div data-id="85" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="app-3-">APP上的文案(3)</h1>
+<h2 id="-">（发送邮件）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-86">
+        <div data-id="86" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我需要尽快发布我的邮件，因为我的老板快把我逼疯了！</p>
+</blockquote>
+<p>关键词：急迫、压力</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-87">
+        <div data-id="87" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>在文案上提醒用户拥有创建和发送内容的自主权。</li>
+<li>鼓励和支持用户完成一系列过程。</li>
+<li>提供可视化的引导，但是不要废话太多，也不要让你过分的幽默浪费用户的时间。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-88">
+        <div data-id="88" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>现在发送——你一定能完成这个任务。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-89">
+        <div data-id="89" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">创建发送邮件列表的表单</h1>
+<h2 id="-">（需要填写该邮件列表所属的发件人地址）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-90">
+        <div data-id="90" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>发邮件前怎么还要填写一个对话框？他们怎么又要我的邮件地址？</p>
+</blockquote>
+<p>关键词：愤怒</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-91">
+        <div data-id="91" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>用朴素的语言和通用术语去描述表单项。</li>
+<li>不要包含有歧义或让用户困惑的语言。</li>
+<li>越简单越好。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-92">
+        <div data-id="92" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>我们会在每个页面下方放置这个邮件地址，以避免违反垃圾邮件的相关法律。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-93">
+        <div data-id="93" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="twitter-facebook-2-">Twitter, Facebook(2)</h1>
+<h2 id="-">（针对邮件营销专家的私信抱怨）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-94">
+        <div data-id="94" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我不关心你发布的内容，我的Twitter的timeline中的信息已经够多了。</p>
+</blockquote>
+<p>关键词：抓狂、失望</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-95">
+        <div data-id="95" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>Get他的点——你可以在用户的timeline里写140字，但是大家都那么忙，谁看啊。</li>
+<li>注意发布合适的内容，在重大公共事件发生的时候，避免在社交网站里做营销。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-96">
+        <div data-id="96" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>感谢反馈，我们会持续改进<a href="https://twitter.com/eventbrite">@eventbrite</a>账户更新的内容品质。<a href="http://eepurl.com/bh36K1"><a href="http://eepurl.com/bh36K1">http://eepurl.com/bh36K1</a></a></p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-97">
+        <div data-id="97" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-2-">基础知识(2)</h1>
+<h2 id="-">（解决用户的困扰）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-98">
+        <div data-id="98" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我不明白为什么会报错，我真的没时间去看文档找原因啊。</p>
+</blockquote>
+<p>关键词：困惑、愤怒</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-99">
+        <div data-id="99" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>直接点。迅速解决问题是最重要的，这样他可以回去继续工作。</li>
+<li>避免幽默感和营销腔。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-100">
+        <div data-id="100" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>语法错误——意味着你的内容里出现了系统不支持的字符，请检查你输入的内容，是否犯了类似“myemail@gmailcom”这样的毛病。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-101">
+        <div data-id="101" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">报错信息</h1>
+<h2 id="-">（用户点击发邮件没有反应）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-102">
+        <div data-id="102" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>怎么搞的？我怎么发不出去邮件啊？</p>
+</blockquote>
+<p>关键词：困惑、压力、生气</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-103">
+        <div data-id="103" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>提供解决方案或下一步操作的引导。</li>
+<li>坦率告诉用户为什么会报错。</li>
+<li>冷静。避免使用感叹号和一些可能导致焦躁的词汇，如“警告”、“马上”等等。</li>
+<li>严肃。不要让陷于沮丧的用户感觉你在开玩笑。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-104">
+        <div data-id="104" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>我们的数据服务器出现了一些问题，工程师正在抢修，很快就会恢复正常。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-105">
+        <div data-id="105" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="-">警告</h1>
+<h2 id="-">（因用户的问题而触发警告）</h2>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-106">
+        <div data-id="106" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">用户心理</h3>
+<p>潜台词：</p>
+<blockquote>
+<p>我擦！！！我不会被开除吧！</p>
+</blockquote>
+<p>关键词：困惑、压力、生气、绝望、害怕</p>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-107">
+        <div data-id="107" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案要点：</h3>
+<ol>
+<li>直接。告诉用户发生了什么。</li>
+<li>冷静。避免使用感叹号和一些可能导致焦躁的词汇，如“警告”、“马上”等等。</li>
+<li>严肃。不要让陷于沮丧的用户感觉你在开玩笑。</li>
+</ol>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-108">
+        <div data-id="108" class="slide-overlay"></div>
+        <section class="slide-content"><h3 id="-">文案示例：</h3>
+<blockquote>
+<p>由于有一封邮件出现了特别高的退订率，你的用户名OHNO100被暂时停用。</p>
+</blockquote>
+</section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-109">
+        <div data-id="109" class="slide-overlay"></div>
+        <section class="slide-content"><h1 id="thanks-">Thanks!</h1>
+<h2 id="benny-chia-ridea-aug-2016">Benny Chia, Ridea, Aug 2016</h2>
+</section>
+      </div>
+    </div>
+</div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="overview">☷</div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  var $fragments = document.querySelectorAll('#slide-' + position + ' .fragment');
+  var fragmentsFinished = false;
+  if ($fragments.length) {
+    if (n > 0) {
+      var $f = document.querySelectorAll('#slide-' + position + ' .fragment.hidden');
+      if (!$f.length) fragmentsFinished = true;
+      else $f[0].classList.remove('hidden');
+    } else {
+      var $f = document.querySelectorAll('#slide-' + position + ' .fragment:not(.hidden)');
+      if (!$f.length) fragmentsFinished = true;
+      else $f[$f.length - 1].classList.add('hidden');
+    }
+  } else {
+    fragmentsFinished = true;
+  }
+
+  if (fragmentsFinished) {
+    /* Positions are 1-indexed, so we need to add and subtract 1 */
+    var nextPosition = (position - 1 + n) % numSlides + 1;
+
+    /* Normalize nextPosition in-case of a negative modulo result */
+    nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+    document.getElementById('slide-' + position).classList.add('hidden');
+    document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+    updateProgress();
+    updateURL();
+    updateTabIndex();
+  }
+
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({}, null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+    document.mozFullScreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+    docElem.requestFullscreen ||
+    docElem.msRequestFullscreen ||
+    docElem.mozRequestFullScreen ||
+    docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+    doc.exitFullscreen ||
+    doc.msExitFullscreen ||
+    doc.mozCancelFullScreen ||
+    doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function(e) {
+    if(e.target.tagName.toLowerCase() === 'textarea') return;
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    } else if (kc === 27) {
+      toggleOverview();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function(e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function(e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+  if (document.querySelector('.overview')) {
+    document.querySelector('.overview').onclick = function(e) {
+      toggleOverview();
+    }
+  }
+  var $overlays = document.querySelectorAll('.slide-overlay');
+  [].forEach.call($overlays, function($overlay) {
+    $overlay.onclick = function(event) {
+      navigate(parseInt(event.target.dataset.id) - currentPosition());
+      toggleOverview();
+    }
+  });
+
+  var $fragments = document.querySelectorAll('.fragment');
+  [].forEach.call($fragments, function($fragment) {
+    $fragment.classList.add('hidden');
+  });
+
+});
+
+function toggleOverview() {
+  if (window.$style !== undefined) {
+    window.$style.remove();
+    delete window.$style;
+    document.querySelector('.slides').classList.remove('active');
+  } else {
+    var $slides = document.querySelector('.slides');
+    $slides.classList.add('active');
+    var slidesList = document.querySelectorAll('.slide-wrapper');
+
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+    window.$style = document.createElement('style');
+    window.$style.innerHTML = '.slide-wrapper {width: ' + (x * 0.25) + 'px; height: ' + (y * 0.25) + 'px; } body .slide {width: ' + x + 'px; height: ' + y + 'px; position: relative; transform: scale(0.25,0.25); transform-origin: 0 0; } .slide.hidden{display: block; }';
+
+    document.getElementsByTagName('head')[0].appendChild(window.$style);
+  }
+}
+  </script>
+</body>
+</html>

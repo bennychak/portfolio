@@ -1,0 +1,814 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Web Design</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+  padding: 30px;
+
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+img{ max-width:100%; display:block; margin:0 auto}
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="web-">Web设计基础</h1>
+<div style="text-align:center; margin-top:30px"><img src="./webdesign/2.png" alt="Alt text"></div></section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h1 id="h5">H5</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h3 id="h5-">H5的类型</h3>
+<p>3 types：</p>
+<ul>
+<li>建站 - 传播 留存</li>
+<li>游戏 - 传播 盈利</li>
+<li>营销 - 传播 转化</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="-sample">建站 Sample</h3>
+<p>Tiffany (by Brad Frost)</p>
+<p><img src="./webdesign/10.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="-sample">游戏 Sample</h3>
+<p>神经猫（by Egret）</p>
+<p><img src="./webdesign/11.jpg" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="-sample">营销 Sample</h3>
+<p>顺风车大电影（by GANG）</p>
+<p><img src="./webdesign/9.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h1 id="h5-html5">H5 ≈ HTML5</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="-web-">各种Web页面</h3>
+<ul>
+<li><a href="http://coolhomepages.com/Fantastic-Collage-Style-Web-Design-Examples/blog-267.html">http://coolhomepages.com/Fantastic-Collage-Style-Web-Design-Examples/blog-267.html</a></li>
+<li><a href="http://www.bing.com/">http://www.bing.com/</a></li>
+<li><a href="https://vine.co/">https://vine.co/</a></li>
+<li><a href="http://www.dtelepathy.com/">http://www.dtelepathy.com/</a></li>
+<li><a href="http://lol.qq.com/act/a20120511brand/">http://lol.qq.com/act/a20120511brand/</a></li>
+<li><a href="http://www.antarcticstation.org/">http://www.antarcticstation.org/</a></li>
+<li><a href="http://www.wm.edu/">http://www.wm.edu/</a></li>
+<li><a href="http://english.pku.edu.cn/">http://english.pku.edu.cn/</a></li>
+<li><a href="http://browser.qq.com/mac/index.html">http://browser.qq.com/mac/index.html</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="-">灵活性</h3>
+<blockquote>
+<p> “网页和打印介质的不同在于它具有打印介质没有的灵活性，我们应该接受这种灵活性并且利用它。”
+ ——John Allsopp, 2000.4.7, <a href="http://alistapart.com/article/dao">&quot;A Dao of Web Design&quot;</a> </p>
+</blockquote>
+<p><img src="./webdesign/13.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h1 id="-history">历史 History</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="-content">承载媒体 Content</h3>
+<ul>
+<li>1990’s: 纯文本(超链接) ，图片(&lt;img&gt;)<br><a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html">https://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html</a></li>
+<li>2000’s: Flash(富媒体/视频)    </li>
+<li>2010’s: html5(geolocation/多api/canvas绘图等)</li>
+</ul>
+<blockquote>
+<p>设计是为内容服务的，所以内容比设计更重要。脱离内容的设计就不是设计了，只能称为装饰。<br>——Jeffrey Zeldman</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="-method">设计方法 Method</h3>
+<ul>
+<li>1990’s: 文档  </li>
+<li>2000’s: PS切图，table布局，imageready, pixel perfect  </li>
+<li>2010’s: 体现适应性，在浏览器中进行设计</li>
+</ul>
+<blockquote>
+<p>“我常常诧异于那些不做设计的人他们居然有这样的观点：“设计不就是上上色、加点装饰吗？”——诚然，有很多的烂设计只是为页面加点装饰而已，但是好的设计绝非如此，好的设计都在解决问题。”<br>— JEFFREY VEEN</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h1 id="-trend">趋势 Trend</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="pc-">PC - 移动</h3>
+<p><img src="./webdesign/4.png" alt="Alt text"></p>
+<p>Sara Cannon, 2012.5.7, &quot;Responsive Design&quot;,<br><a href="http://www.slideshare.net/saracannon/responsive-design-12837964?from_search=2">http://www.slideshare.net/saracannon/responsive-design-12837964?from_search=2</a><br>Phone Count,<br><a href="http://phonecount.com/pc/count.jsp">http://phonecount.com/pc/count.jsp</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="pc-">PC - 移动</h3>
+<p><img src="./webdesign/14.png" alt="Alt text"></p>
+<p>Luke W. 2016.7.28: <a href="https://twitter.com/lukew/status/758433206882361345">https://twitter.com/lukew/status/758433206882361345</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="pc-">PC - 移动</h3>
+<p><img src="./webdesign/6.png" alt="Alt text"></p>
+<p>Andy Gilliland, 2011.4.1, &quot;Pixel Proliferation: A Toolset For Managing Screen Resolutions&quot;,<br><a href="http://punchcut.com/perspectives/expanding-universe-toolset-managing-screen-resolutions">http://punchcut.com/perspectives/expanding-universe-toolset-managing-screen-resolutions</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="pc-">PC - 移动</h3>
+<p><img src="./webdesign/15.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="web1-0-2-0">Web1.0 - 2.0</h3>
+<p><img src="./webdesign/5.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="2015-trend">2015 Trend</h3>
+<ul>
+<li>扁平化和Material Design</li>
+<li>背景图和背景视频</li>
+<li>移动APP和social sites占主流</li>
+<li>交互式信息图表替代了静态信息图表</li>
+<li>微交互</li>
+<li>代码少少，实现多多</li>
+<li>大图片和视频取代了图片轮播</li>
+<li>更高性能的响应式设计</li>
+<li>发挥字体的功能</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="2015-trend-">2015 Trend(续)</h3>
+<ul>
+<li>卡片式设计</li>
+<li>增强现实</li>
+<li>微动画</li>
+<li>更多的SVG实现</li>
+<li>响应式icon</li>
+<li>更多的个性化</li>
+<li>滚动取代点击</li>
+<li>线框icon + 幽灵按钮</li>
+<li>改良的视差滚动（less is More）</li>
+</ul>
+<p><a href="http://justcreative.com/2015/01/02/web-design-trends-predictions-2015/">http://justcreative.com/2015/01/02/web-design-trends-predictions-2015/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="2016-trend">2016 Trend</h3>
+<ul>
+<li>垂直设计和滚动</li>
+<li>卡片样式的界面</li>
+<li>视频banner</li>
+<li>微动画</li>
+<li>注意页面中的交互</li>
+<li>更多字体设计</li>
+<li>插画</li>
+<li>强烈明亮的颜色，类似80年代的风格</li>
+<li>汉堡包导航和icon的运用</li>
+<li>模糊现实和虚拟之间的差别</li>
+</ul>
+<p><a href="http://designmodo.com/web-design-trends-2016/">http://designmodo.com/web-design-trends-2016/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h1 id="web-2013-present">Web设计的取向 2013 - present</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="-visual">纯视觉 Visual</h3>
+<ul>
+<li>拼贴（Collage）</li>
+<li>轴测（Isometric）</li>
+<li>拟物（Skeuomorph）</li>
+<li>大背景图（Large Background）</li>
+<li>扁平化（纯扁平Metro或物理扁平Material Design）</li>
+<li>...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h3 id="-ui-develop">视觉+技术实现 UI develop</h3>
+<ul>
+<li>Ian Lunn:<br><a href="http://www.ianlunn.co.uk/blog/code-tutorials/recreate-nikebetterworld-parallax/">视差滚动（Parallax Scrolling）</a></li>
+<li>Ethan Marcotte:<br><a href="http://alistapart.com/article/responsive-web-design/">响应式设计（Responsive Web Design）</a></li>
+<li>Luke W.:<br><a href="http://www.lukew.com/ff/entry.asp?828">依赖传感器的设计（Designing for Sensors）</a><br><a href="http://matthew.wagerfield.com/parallax/">http://matthew.wagerfield.com/parallax/</a>  </li>
+<li>...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="-browser-is-canvas">浏览器 Browser is canvas</h3>
+<p>IE windows phone, Firefox, Chrome, Opera, Safari, UC、海豚、QQ, Webview(主要是X5)</p>
+<p><img src="./webdesign/3.png" alt="Alt text"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h1 id="-practice">实操 Practice</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="-copies">组织内容 Copies</h3>
+<p>首先，Web页面是一份文档。</p>
+<ul>
+<li>阅读顺序</li>
+<li>可访问性</li>
+<li>占位符<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...<br><a href="http://placehold.it/350x150">http://placehold.it/350x150</a></li>
+<li>几个尺寸：1003，960，800，768，750，640</li>
+<li>栅格化，如 <a href="http://960.gs/">960 Grid System</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h3 id="-asset">设计资源 Asset</h3>
+<ul>
+<li>位图：.png, .gif, .jpg, <a href="https://developers.google.com/speed/webp/">.webp</a> （canvas）</li>
+<li>矢量: .svg, font</li>
+<li>字体<ul>
+<li>.eot: Internet Explorer  </li>
+<li>.woff: Chrome, Firefox  </li>
+<li>.ttf: Chrome, Firefox, Opera, Safari, Android, iOS 4.2+  </li>
+<li>.svg: iOS 4.1-</li>
+<li><a href="https://www.fontsquirrel.com/tools/webfont-generator">https://www.fontsquirrel.com/tools/webfont-generator</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h3 id="-animation">动画的选择 Animation</h3>
+<ul>
+<li>gif动画<br>工具：PS<br>优点：简单、风格化<br>缺点：逐帧、256色，无法交互</li>
+<li>CSS或Canvas动画<br>工具：css / canvas, <a href="http://tumult.com/hype/">HYPE3</a><br>优点：web支持最好，最流畅，效果丰富，可交互<br>缺点：需要写代码或和开发配合</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-30">
+    <section class="slide-content"><h3 id="-animation">动画的选择（续） Animation</h3>
+<ul>
+<li>视频动画 .mp4<br>工具：AE、Flash<br>优点：视频动画，视觉无所不能<br>缺点：手机端自动全屏，无法交互</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
+    <section class="slide-content"><h3 id="-multimedia">多媒体 Multimedia</h3>
+<ul>
+<li>音频 audio</li>
+<li>视频 video</li>
+<li>Flash和其他</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-32">
+    <section class="slide-content"><h3 id="-optimize">优化 Optimize</h3>
+<ul>
+<li>适应性 flex, fluid<br>响应式设计</li>
+<li>视网膜 retina<br>@2x位图、矢量图形、无图优化</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-33">
+    <section class="slide-content"><h3 id="-fix">兼容 Fix</h3>
+<p>透明、圆角、动画、渐变、变形……</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-34">
+    <section class="slide-content"><h1 id="-small-small-"><small>面向未来的友好设计</small></h1>
+<ul>
+<li>progressive enhancement 渐进增强</li>
+<li>Responsive Web Design 响应式设计</li>
+<li>Design System 设计系统</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-35">
+    <section class="slide-content"><h1 id="thanks">Thanks</h1>
+<h2 id="-small-benny-chia-ridea-aug-4-2016-small-"><small>Benny Chia, Ridea., Aug 4, 2016</small></h2>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>
