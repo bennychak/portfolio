@@ -58,6 +58,9 @@ section dl{ padding-top:.5rem;}
 section dt{ font-weight:bold; padding-top:.5rem; font-size:.75rem}
 section dd{ font-size:.75rem}
 
+.ollist{ padding-left:1rem; margin-top:.5rem; line-height:2em}
+.ollist .item{ list-style:decimal;}
+
 .itemlist{ margin:0 auto; max-width:820px; padding:0 0 1rem 1rem;}
 .itemlist .item{ padding:1rem 1rem 0 0;}
 .itemlist .item .pic,
@@ -77,7 +80,8 @@ section dd{ font-size:.75rem}
 .navlist .item .supp{ display:none; margin-left:.5rem;}
 
 .maindetail{ margin:1rem auto 0; max-width:700px; padding:1rem; border-top:#dadada 1px solid;}
-.maindetail p{ margin-top:1rem; line-height:2em; font-size:.75rem; text-align:justify;}
+.maindetail p{ margin-top:1rem; line-height:2em; font-size:.875rem; text-align:justify;}
+.maindetail .ollist{ font-size:.875rem}
 
 .bottomarea{ padding:1rem 0 3rem; color:#fbfcfc; border-top:#b9975b 3px solid; background-color:#115740}
 .bottomarea p,
