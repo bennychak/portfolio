@@ -16,7 +16,7 @@ a.tobottom:active{ color:#000; text-decoration:none;}
 .navlist .selected .lk{ color:#000; cursor:default;}
 .navlist .item br{ display:none}
 
-.insertphoto{ display:block; width:100%; max-width:500px; margin:0 auto;}
+.insertphoto{ display:block; max-width:100%; margin:0 auto;}
 
 .checked .toparea{ position:fixed; min-height:2rem; background-color:rgba(255,255,255,.95); padding:.5rem 0; box-shadow:rgba(0,0,0,.3) 0 0 3px; color:#666;
 	animation:toparea .3s ease-in-out 1;
@@ -38,38 +38,38 @@ section{ padding-bottom:3rem}
 section h2{ background-color:#115740; border-bottom:#b9975b 3px solid; color:#fff}
 section h2 .inner{ position:relative; margin:0 auto; max-width:820px; padding:.5rem 1rem; font-size:1rem;}
 section h2 img{ float:left; margin:0 auto; width:2rem;}
-section h2 p{ overflow:hidden; position:relative; font-size:.75rem;}
+section h2 p{ overflow:hidden; position:relative; font-size:1.2rem;}
 section h2 a{ color:#fff;}
 
 section h3{ max-width:820px; padding:0 1rem; margin:2rem auto 0; font-size:1rem; text-align:center;}
 section h3 img{ width:2rem;}
 
-section h4{ margin-top:2rem; font-size:1rem; font-weight:bold; color:#000}
+section h4{ margin-top:2rem; padding-left:.5rem; font-size:1rem; font-weight:bold; color:#000; border-left:#000 .5rem solid;}
 
-section dl{ padding-top:.5rem;}
-section dt{ font-weight:bold; padding-top:.5rem; font-size:.75rem}
-section dd{ font-size:.75rem}
+section dl{}
+section dt{ font-weight:bold; padding-top:.5rem; font-size:.875rem}
+section dd{ font-size:.875rem; padding-top:.5rem; color:#878787;}
 
-.itemlist{ margin:0 auto; max-width:820px; padding:0 0 1rem 1rem;}
+.itemlist{ margin:0 auto; max-width:820px; padding:1rem 0 1rem 1rem;}
 .itemlist .item{ padding:1rem 1rem 0 0;}
 .itemlist .item .pic,
-.itemlist .item .desc{ background-color:#fff;}
-.itemlist .item .pic{ float:left; padding:.2rem; max-width:50%; margin-right:1rem; box-shadow:rgba(0,0,0,.2) 0 0 3px}
+.itemlist .item .desc{}
+.itemlist .item .pic{ float:left; padding:.2rem; max-width:40%; margin-right:1rem;}
 .itemlist .item .pic .lk{ display:block; position:relative;}
 .itemlist .item .pic .lk .placer{ position:absolute; width:100%; height:100%; left:0; top:0; background:rgba(0,0,0,.2) url(./images/play@2x.png) center center no-repeat; background-size:80px 80px}
 .itemlist .item img{ width:100%; display:block; opacity:.95}
 .itemlist .item .lk:hover img{ opacity:1}
-.itemlist .item .desc{ font-size:.75rem; padding:.5rem; overflow:hidden;}
+.itemlist .item .desc{ font-size:.75rem; padding:0 .5rem; overflow:hidden;}
 
-.articlelist{ padding-left:1.2rem}
+.articlelist{ padding-left:1.2rem; margin-top:1rem;}
 .articlelist .item{ padding:.5rem 1rem 0 0; list-style:disc;}
 
 .navlist .item{ font-size:.75rem;}
 .navlist .selected .lk:hover{ text-decoration:none;}
 .navlist .item .supp{ display:none; margin-left:.5rem;}
 
-.maindetail{ margin:1rem auto 0; max-width:700px; padding:1rem; border-top:#dadada 1px solid;}
-.maindetail p{ margin-top:1rem; line-height:2em; font-size:.75rem; text-align:justify;}
+.maindetail{ margin:0 auto 0; max-width:700px; padding:0 1rem .5rem;}
+.maindetail p{ margin-top:1rem; line-height:2em; font-size:.875rem; text-align:justify;}
 
 .bottomarea{ padding:1rem 0 3rem; color:#fbfcfc; border-top:#b9975b 3px solid; background-color:#115740}
 .bottomarea p,
@@ -88,6 +88,8 @@ section dd{ font-size:.75rem}
 .btn1{ background:#fa8919; color:#fff; font-size:1rem; text-transform:uppercase; padding:.56em; border-radius:4px; text-align:center;}
 .morelink{ display:block; margin:1rem 1rem 0;}
 
+.qrcode{ width:100px;}
+
 @media screen and (min-width:768px){
 	body{ -webkit-user-select:auto;}
 	.tobottom{ display:none;}
@@ -96,8 +98,6 @@ section dd{ font-size:.75rem}
 	.checked section:first-child{ padding-top:11.5rem;}
 	section h3{ font-size:1.25rem;}
 	section h3 img{ width:2rem;}
-	section dt{ display:inline-block; width:30%; vertical-align:top;}
-	section dd{ display:inline-block; width:60%; padding-top:.5rem}
 	.navlist .item{ float:left; border-left:#eee 1px solid;}
 	.bottomarea .navlist .item{ border-left:none;}
 	.navlist .item br{ display:block;}
@@ -109,8 +109,9 @@ section dd{ font-size:.75rem}
 	section{ min-height:400px}
 
 	.itemlist .item{ float:left; box-sizing:border-box}
-	.itemlist .item .pic{ float:none; margin:0 auto; max-width:100%}
-	.itemlist .item .desc{ max-width:100%; margin:0 auto; margin-top:.5rem;}
+	.itemlist .item .pic{}
+	.itemlist .item .desc,
+	.itemlist .item .desc dl{ padding-top:0;}
 
 	.e_itemlist_1 .item{ width:100%}
 	.e_itemlist_2 .item{ width:50%}
