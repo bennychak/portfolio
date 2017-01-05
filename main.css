@@ -24,7 +24,7 @@ a.tobottom:active{ color:#000; text-decoration:none;}
 	100%{ opacity:1; transform:translateY(0%)}
 }
 
-.insertphoto{ display:block; max-width:100%; margin:0 auto;}
+.insertphoto{ display:block; width:100%; max-width:500px; margin:0 auto;}
 
 .checked .toparea{ position:fixed; min-height:2rem; background-color:rgba(255,255,255,.95); padding:.5rem 0; box-shadow:rgba(0,0,0,.3) 0 0 3px; color:#666;
 	animation:toparea .3s ease-in-out 1;
@@ -39,14 +39,15 @@ a.tobottom:active{ color:#000; text-decoration:none;}
 .checked .toparea h1 img{ width:1.4rem;}
 .checked .toparea .nav{ padding:0; float:right;}
 
-article{ background-color:#fff;}
+article{ background-color:#f4f4f4;}
 
 .checked section:first-child{ padding-top:7rem;}
 section{ padding-bottom:3rem}
 section h2{ background-color:#115740; border-bottom:#b9975b 3px solid; color:#fff}
 section h2 .inner{ position:relative; margin:0 auto; max-width:820px; padding:.5rem 1rem; font-size:1rem;}
 section h2 img{ float:left; margin:0 auto; width:2rem;}
-section h2 p{ overflow:hidden; position:relative; font-size:1.2rem;}
+section h2 p{ overflow:hidden; position:relative; font-size:1.2rem; text-transform:uppercase;}
+section h2 p:first-letter{}
 section h2 a{ color:#fff;}
 
 section h3{ max-width:820px; padding:0 1rem; margin:2rem auto 0; font-size:1rem; text-align:center;}
@@ -54,18 +55,18 @@ section h3 img{ width:2rem;}
 
 section h4{ margin-top:2rem; padding-left:.5rem; font-size:1rem; font-weight:bold; color:#000; border-left:#000 .5rem solid;}
 
-section dl{}
+section dl{ padding-top:1rem;}
 section dt{ font-weight:bold; padding-top:.5rem; font-size:.875rem}
 section dd{ font-size:.875rem; padding-top:.5rem; color:#878787;}
 
 .ollist{ padding-left:1rem; margin-top:.5rem; line-height:2em}
 .ollist .item{ list-style:decimal;}
 
-.itemlist{ margin:0 auto; max-width:820px; padding:1rem 0 1rem 1rem;}
+.itemlist{ margin:0 auto; max-width:820px; padding:1rem 0;}
 .itemlist .item{ padding:1rem 1rem 0 0;}
 .itemlist .item .pic,
 .itemlist .item .desc{}
-.itemlist .item .pic{ float:left; padding:.2rem; max-width:40%; margin-right:1rem;}
+.itemlist .item .pic{ float:left; max-width:40%; margin-right:1rem;}
 .itemlist .item .pic .lk{ display:block; position:relative;}
 .itemlist .item .pic .lk .placer{ position:absolute; width:100%; height:100%; left:0; top:0; background:rgba(0,0,0,.2) url(./images/play@2x.png) center center no-repeat; background-size:80px 80px}
 .itemlist .item img{ width:100%; display:block; opacity:.95}
@@ -73,13 +74,14 @@ section dd{ font-size:.875rem; padding-top:.5rem; color:#878787;}
 .itemlist .item .desc{ font-size:.75rem; padding:0 .5rem; overflow:hidden;}
 
 .articlelist{ padding-left:1.2rem; margin-top:1rem;}
-.articlelist .item{ padding:.5rem 1rem 0 0; list-style:disc;}
+.articlelist .item{ padding:.5rem 1rem 0 0; font-size:.875rem; list-style:disc;}
 
 .navlist .item{ font-size:.75rem;}
 .navlist .selected .lk:hover{ text-decoration:none;}
 .navlist .item .supp{ display:none; margin-left:.5rem;}
 
-.maindetail{ margin:0 auto 0; max-width:700px; padding:0 1rem .5rem;}
+.maindetail{ margin:0 auto 0; max-width:820px; padding:0 1rem .5rem;}
+.e_md600{ max-width:600px;}
 .maindetail p{ margin-top:1rem; line-height:2em; font-size:.875rem; text-align:justify;}
 .maindetail .ollist{ font-size:.875rem}
 
