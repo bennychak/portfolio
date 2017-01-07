@@ -99,10 +99,17 @@ section dd{ font-size:.875rem; padding-top:.5rem; color:#878787;}
 .itemlist .item img{ width:100%; display:block; box-sizing:border-box;}
 
 .itemlist .item .pic .lk img{ border:#fff .2rem solid;
+	-webkit-transition:all .2s ease-in-out;
+	-moz-transition:all .2s ease-in-out;
 	transition:all .2s ease-in-out;
 }
-.itemlist .item .pic .lk:hover img{ box-shadow:rgba(0,0,0,.1) .1rem .1rem .2rem;
-	transform:rotate(.5deg); transform-origin:30% 70%;
+.itemlist .item .pic .lk:hover img{ box-shadow:rgba(0,0,0,.1) .1rem .1rem .1rem .1rem;
+	-webkit-transform:rotate(.5deg);
+	-webkit-transform-origin:30% 70%;
+	-moz-transform:rotate(.5deg);
+	-moz-transform-origin:30% 70%;
+	transform:rotate(.5deg);
+	transform-origin:30% 70%;
 }
 .itemlist .item .desc{ font-size:.75rem; padding:0 .5rem; overflow:hidden;}
 
@@ -146,7 +153,7 @@ section dd{ font-size:.875rem; padding-top:.5rem; color:#878787;}
 	section h3 img{ width:2rem;}
 	.navlist .item{ float:left; border-left:#eee 1px solid;}
 	.bottomarea .navlist .item{ border-left:none;}
-	.navlist .item br{ display:block;}
+	.navlist .item br{}
 	.navlist .item .supp{ margin-left:0;}
 	.toparea .nav{ display:block;}
 	.checked .toparea .navlist .item br,
